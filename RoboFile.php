@@ -10,7 +10,7 @@ use Robo\Tasks;
 
 final class RoboFile extends Tasks
 {
-    public function testAcceptance($phiremockPort = '8080', $phiremockInterface = '0.0.0.0')
+    public function testLocal($phiremockPort = '8080', $phiremockInterface = '0.0.0.0')
     {
         $this->taskExec(sprintf('phiremock -p %s -i %s', $phiremockPort, $phiremockInterface))
             ->background(true)
@@ -18,6 +18,15 @@ final class RoboFile extends Tasks
 
         $this->taskPHPUnit()
             ->bootstrap('tests/bootstrap.php')
+            ->args(' --coverage-text', '--colors=never')
+            ->run();
+    }
+
+    public function testCi()
+    {
+        $this->taskPHPUnit()
+            ->bootstrap('tests/bootstrap.php')
+            ->args(' --coverage-text', '--colors=never')
             ->run();
     }
 }

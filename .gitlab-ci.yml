@@ -1,0 +1,20 @@
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vendor/
+
+before_script:
+  - .ci/docker_install.sh
+  - .ci/get_composer.sh
+  - php composer.phar install
+  - nohup ./vendor/bin/phiremock -p 8080 -i 0.0.0.0 2>&1 >/dev/null &
+
+test:7.2:
+  image: php:7.2
+  script:
+    - php composer.phar test-ci
+
+test:7.3:
+  image: php:7.3
+  script:
+    - php composer.phar test-ci

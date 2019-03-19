@@ -20,7 +20,7 @@
     }
   },
   "require": {
-    "php": ">= 7.1",
+    "php": ">=7.2",
     "gounlaf/psr7-streams": "^1.0",
     "guzzlehttp/psr7": "^1.5",
     "nesbot/carbon": "^2.16",
@@ -45,7 +45,10 @@
   "scripts": {
     "clean": "rm -rf vendor/",
     "test": [
-      "composer robo test"
+      "robo test:local"
+    ],
+    "test-ci": [
+      "robo test:ci"
     ]
   },
   "prefer-stable": true,
