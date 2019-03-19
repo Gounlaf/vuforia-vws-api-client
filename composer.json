@@ -1,0 +1,53 @@
+{
+  "name": "gounlaf/vuforia-vfs-api-client",
+  "description": "Unofficial client for Vuforia Web Services API",
+  "type": "library",
+  "license": "LGPL-3.0-or-later",
+  "keywords": [
+    "vuforia",
+    "vuforia web services",
+    "api client",
+    "client"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Gounlaf\\VfsApiClient\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Gounlaf\\VfsApiClient\\Test\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">= 7.1",
+    "gounlaf/psr7-streams": "^1.0",
+    "guzzlehttp/psr7": "^1.5",
+    "nesbot/carbon": "^2.16",
+    "tebru/retrofit-php": "dev-master",
+    "tebru/retrofit-php-converter-gson": "^0.2.0",
+    "tebru/retrofit-php-http-guzzle6": "^0.1.1"
+  },
+  "require-dev": {
+    "ext-json": "*",
+    "ext-xdebug": "*",
+    "consolidation/robo": "~1",
+    "mcustiel/phiremock": "*",
+    "phpunit/phpunit": "^8.0",
+    "symfony/var-dumper": "^4.2"
+  },
+  "config": {
+    "sort-packages": true,
+    "platform": {
+      "php": "7.3"
+    }
+  },
+  "scripts": {
+    "clean": "rm -rf vendor/",
+    "test": [
+      "composer robo test"
+    ]
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev"
+}

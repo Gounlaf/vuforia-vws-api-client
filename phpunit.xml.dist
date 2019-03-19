@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2019 Florian Levis.
+  ~ Distributed under the MIT License (http://opensource.org/licenses/MIT)
+  -->
+
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.0/phpunit.xsd"
+        colors="true"
+        bootstrap="tests/bootstrap.php">
+    <testsuites>
+        <testsuite name="Vuforia Web Services API Test Suite">
+            <directory>tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <env name="PHIREMOCK_PORT" value="8080"/>
+        <env name="PHIREMOCK_INTERFACE" value="0.0.0.0"/>
+        <env name="PHIREMOCK_HOST" value="localhost"/>
+    </php>
+</phpunit>
