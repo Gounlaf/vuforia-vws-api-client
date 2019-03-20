@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient;
+namespace Gounlaf\VwsApiClient;
 
 use Carbon\Carbon;
 use Exception;
@@ -16,7 +16,7 @@ use Psr\Http\Message\RequestInterface;
 
 /**
  * Class SignatureBuilder
- * @package Gounlaf\VfsApiClient
+ * @package Gounlaf\VwsApiClient
  *
  * @see https://library.vuforia.com/content/vuforia-library/en/articles/Training/Using-the-VWS-API.html Making API calls
  */

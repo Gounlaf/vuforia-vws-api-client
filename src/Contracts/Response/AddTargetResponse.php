@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Contracts\Response;
+namespace Gounlaf\VwsApiClient\Contracts\Response;
 
 use Tebru\Retrofit\Response;
 

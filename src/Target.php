@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient;
+namespace Gounlaf\VwsApiClient;
 
 use Gounlaf\Psr7streams\ConvertBase64EncodeStream;
 use GuzzleHttp\Psr7\Stream;

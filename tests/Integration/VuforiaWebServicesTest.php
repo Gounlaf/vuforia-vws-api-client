@@ -6,12 +6,12 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Test\Integration;
+namespace Gounlaf\VwsApiClient\Test\Integration;
 
-use Gounlaf\VfsApiClient\Contracts\Response\SimpleResponse;
-use Gounlaf\VfsApiClient\Target;
-use Gounlaf\VfsApiClient\Test\TestCase;
-use Gounlaf\VfsApiClient\VuforiaWebServices;
+use Gounlaf\VwsApiClient\Contracts\Response\SimpleResponse;
+use Gounlaf\VwsApiClient\Target;
+use Gounlaf\VwsApiClient\Test\TestCase;
+use Gounlaf\VwsApiClient\VuforiaWebServices;
 use GuzzleHttp\Client;
 use function GuzzleHttp\Psr7\stream_for;
 use function GuzzleHttp\Psr7\uri_for;

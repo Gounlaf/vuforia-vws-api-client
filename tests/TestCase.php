@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Test;
+namespace Gounlaf\VwsApiClient\Test;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;

@@ -6,11 +6,11 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Test\Unit;
+namespace Gounlaf\VwsApiClient\Test\Unit;
 
 use Carbon\Carbon;
-use Gounlaf\VfsApiClient\SignatureFactory;
-use Gounlaf\VfsApiClient\Test\TestCase;
+use Gounlaf\VwsApiClient\SignatureFactory;
+use Gounlaf\VwsApiClient\Test\TestCase;
 use function GuzzleHttp\Psr7\stream_for;
 use InvalidArgumentException;
 use Zend\Diactoros\RequestFactory;

@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Impl\Response;
+namespace Gounlaf\VwsApiClient\Impl\Response;
 
-use Gounlaf\VfsApiClient\Contracts\Response\SimpleResponse as Contract;
+use Gounlaf\VwsApiClient\Contracts\Response\SimpleResponse as Contract;
 
 class SimpleResponse implements Contract
 {

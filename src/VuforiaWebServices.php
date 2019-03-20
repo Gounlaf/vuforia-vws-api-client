@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient;
+namespace Gounlaf\VwsApiClient;
 
-use Gounlaf\VfsApiClient\Contracts\Call\AddTargetCall;
+use Gounlaf\VwsApiClient\Contracts\Call\AddTargetCall;
 use Tebru\Retrofit\Annotation\Body;
 use Tebru\Retrofit\Annotation\POST;
 use Tebru\Retrofit\Annotation\ResponseBody;
@@ -20,7 +20,7 @@ interface VuforiaWebServices
      * @POST("/targets")
      * @Body("target")
      * @param Target $target
-     * @ResponseBody("Gounlaf\VfsApiClient\Impl\Response\SimpleResponse")
+     * @ResponseBody("Gounlaf\VwsApiClient\Impl\Response\SimpleResponse")
      *
      * @return Call|AddTargetCall
      */

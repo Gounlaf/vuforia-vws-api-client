@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Contracts\Call;
+namespace Gounlaf\VwsApiClient\Contracts\Call;
 
-use Gounlaf\VfsApiClient\Contracts\Response\AddTargetResponse;
+use Gounlaf\VwsApiClient\Contracts\Response\AddTargetResponse;
 use Tebru\Retrofit\Call;
 
 /**

@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VfsApiClient\Test\Unit;
+namespace Gounlaf\VwsApiClient\Test\Unit;
 
-use Gounlaf\VfsApiClient\Target;
-use Gounlaf\VfsApiClient\Test\TestCase;
+use Gounlaf\VwsApiClient\Target;
+use Gounlaf\VwsApiClient\Test\TestCase;
 use function GuzzleHttp\Psr7\stream_for;
 
 final class TargetTest extends TestCase
