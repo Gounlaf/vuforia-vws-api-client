@@ -1,5 +1,6 @@
 .phpunit*
 vendor/
+docker-compose.override.yml
 
 # Created by https://www.gitignore.io/api/macos,phpstorm+all
 # Edit at https://www.gitignore.io/?templates=macos,phpstorm+all
