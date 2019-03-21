@@ -18,7 +18,9 @@ final class RoboFile extends Tasks
 
         $this->taskPHPUnit()
             ->bootstrap('tests/bootstrap.php')
-            ->args(' --coverage-text', '--colors=never')
+            ->rawArg(' --coverage-text')
+            ->rawArg('--colors=never')
+            ->rawArg('--testsuite unit-integration')
             ->run();
     }
 
@@ -26,7 +28,9 @@ final class RoboFile extends Tasks
     {
         $this->taskPHPUnit()
             ->bootstrap('tests/bootstrap.php')
-            ->args(' --coverage-text', '--colors=never')
+            ->rawArg(' --coverage-text')
+            ->rawArg('--colors=never')
+            ->rawArg('--testsuite unit-integration')
             ->run();
     }
 }

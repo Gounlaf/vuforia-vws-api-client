@@ -7,11 +7,16 @@
 <phpunit
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.0/phpunit.xsd"
-        colors="true"
+        colors="false"
         bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite name="Vuforia Web Services API Test Suite">
-            <directory>tests/</directory>
+        <testsuite name="unit-integration">
+            <directory >tests/</directory>
+            <exclude>tests/Functional</exclude>
+        </testsuite>
+
+        <testsuite name="functional">
+            <directory>tests/Functional</directory>
         </testsuite>
     </testsuites>
 
@@ -20,6 +25,10 @@
             <directory suffix=".php">src</directory>
         </whitelist>
     </filter>
+
+    <logging>
+        <log type="coverage-text" target="php://stdout" />
+    </logging>
 
     <php>
         <env name="PHIREMOCK_PORT" value="8080"/>
