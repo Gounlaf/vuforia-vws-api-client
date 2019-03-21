@@ -10,10 +10,18 @@ before_script:
   - apk add --no-cache python py2-pip
   - pip install --no-cache-dir docker-compose
 
-tests:
+test-php-72:
   stage: test
   script:
-    - docker-compose run test
+    - docker-compose run test-7.2
+  coverage: '/Lines: +\d+\.\d+/'
+  only:
+    - branches
+
+test-php-73:
+  stage: test
+  script:
+    - docker-compose run test-7.3
   coverage: '/Lines: +\d+\.\d+/'
   only:
     - branches
