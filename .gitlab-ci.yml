@@ -1,20 +1,29 @@
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - vendor/
+image: docker:git
+
+services:
+  - docker:dind
+
+stages:
+  - test
 
 before_script:
-  - .ci/docker_install.sh
-  - .ci/get_composer.sh
-  - php composer.phar install
-  - nohup ./vendor/bin/phiremock -p 8080 -i 0.0.0.0 2>&1 >/dev/null &
+  - apk add --no-cache python py2-pip
+  - pip install --no-cache-dir docker-compose
 
-test:7.2:
-  image: php:7.2
+test-php-72:
+  stage: test
   script:
-    - php composer.phar test-ci
+    - docker-compose build test-7.2
+    - docker-compose run test-7.2
+  coverage: '/Lines: +\d+\.\d+/'
+  only:
+    - branches
 
-test:7.3:
-  image: php:7.3
+test-php-73:
+  stage: test
   script:
-    - php composer.phar test-ci
+    - docker-compose build test-7.3
+    - docker-compose run test-7.3
+  coverage: '/Lines: +\d+\.\d+/'
+  only:
+    - branches

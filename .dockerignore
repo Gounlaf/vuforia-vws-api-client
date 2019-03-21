@@ -1,6 +1,10 @@
-.phpunit*
-vendor/
+.dockerignore
 docker-compose.override.yml
+.git/
+Dockerfile.*
+docker-compose.yml
+.gitlab-ci.yml
+.phpunit*
 
 # Created by https://www.gitignore.io/api/macos,phpstorm+all
 # Edit at https://www.gitignore.io/?templates=macos,phpstorm+all
