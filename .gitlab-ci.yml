@@ -13,6 +13,7 @@ before_script:
 test-php-72:
   stage: test
   script:
+    - docker-compose build test-7.2
     - docker-compose run test-7.2
   coverage: '/Lines: +\d+\.\d+/'
   only:
@@ -21,6 +22,7 @@ test-php-72:
 test-php-73:
   stage: test
   script:
+    - docker-compose build test-7.3
     - docker-compose run test-7.3
   coverage: '/Lines: +\d+\.\d+/'
   only:
