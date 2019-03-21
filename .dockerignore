@@ -1,5 +1,9 @@
+.dockerignore
+.git/
+Dockerfile.*
+docker-compose.yml
+.gitlab-ci.yml
 .phpunit*
-vendor/
 
 # Created by https://www.gitignore.io/api/macos,phpstorm+all
 # Edit at https://www.gitignore.io/?templates=macos,phpstorm+all

@@ -1,0 +1,12 @@
+FROM phpearth/php:7.3-cli
+
+EXPOSE 80
+
+RUN apk add --no-cache composer php7.3-xdebug git zip
+
+WORKDIR /opt/app
+
+ADD composer.mockserver.json /opt/app/composer.json
+RUN composer install
+
+CMD php ./vendor/bin/phiremock -p 80 -i 0.0.0.0

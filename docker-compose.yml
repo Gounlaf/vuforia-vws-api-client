@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  phiremock:
+    build:
+      context: .
+      dockerfile: Dockerfile.phiremock
+
+  test-7.2:
+    depends_on:
+      - phiremock
+    build:
+      context: .
+      dockerfile: Dockerfile.php72
+    environment:
+      PHIREMOCK_PORT: "80"
+      PHIREMOCK_HOST: "phiremock"
+      WAIT_HOSTS: phiremock:80
+
+  test-7.3:
+    depends_on:
+      - phiremock
+    build:
+      context: .
+      dockerfile: Dockerfile.php73
+    environment:
+      PHIREMOCK_PORT: "80"
+      PHIREMOCK_HOST: "phiremock"
+      WAIT_HOSTS: phiremock:80
