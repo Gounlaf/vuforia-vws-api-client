@@ -19,29 +19,18 @@ final class TargetTest extends TestCase
         $target = new Target(
             'test',
             42.0,
-            stream_for('image'),
+            stream_for(base64_encode('image')),
             true,
-            stream_for('application_metadata')
+            stream_for(base64_encode('application_metadata'))
         );
-
-        // https://bugs.php.net/bug.php?id=75910
-//        $expectedJson = <<<JSON
-//{
-//  "name": "test",
-//  "width": 42.0,
-//  "image": "aW1hZ2U=",
-//  "active_flag": true,
-//  "application_metadata": "YXBwbGljYXRpb25fbWV0YWRhdGE="
-//}
-//JSON;
 
         $expectedJson = <<<'JSON'
 {
   "name": "test",
   "width": 42.0,
-  "image": "aW1h",
+  "image": "aW1hZ2U=",
   "active_flag": true,
-  "application_metadata": "YXBwbGljYXRpb25fbWV0YWRh"
+  "application_metadata": "YXBwbGljYXRpb25fbWV0YWRhdGE="
 }
 JSON;
 

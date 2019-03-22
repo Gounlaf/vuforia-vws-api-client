@@ -21,7 +21,6 @@
   },
   "require": {
     "php": ">=7.2",
-    "gounlaf/psr7-streams": "^1.0",
     "guzzlehttp/psr7": "^1.5",
     "nesbot/carbon": "^2.16",
     "tebru/retrofit-php": "dev-master",

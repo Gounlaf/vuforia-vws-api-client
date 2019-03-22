@@ -8,7 +8,6 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient;
 
-use Gounlaf\Psr7streams\ConvertBase64EncodeStream;
 use GuzzleHttp\Psr7\Stream;
 use function GuzzleHttp\Psr7\stream_for;
 use Psr\Http\Message\StreamInterface;
@@ -18,9 +17,9 @@ final class Target extends Stream
     /**
      * @param string $name
      * @param float $width
-     * @param StreamInterface $image
+     * @param StreamInterface $image Base64 encoded version of your image
      * @param bool $activeFlag
-     * @param StreamInterface $applicationMetadata
+     * @param StreamInterface $applicationMetadata Base64 encoded version of your metadata
      */
     public function __construct(
         string $name,
@@ -30,15 +29,12 @@ final class Target extends Stream
         StreamInterface $applicationMetadata
     )
     {
-        $imageStream = new ConvertBase64EncodeStream($image);
-        $applicationMetadataStream = new ConvertBase64EncodeStream($applicationMetadata);
-
         $data = \GuzzleHttp\json_encode([
             'name' => $name,
             'width' => $width,
-            'image' => (string)$imageStream,
+            'image' => (string)$image,
             'active_flag' => $activeFlag,
-            'application_metadata' => (string)$applicationMetadataStream,
+            'application_metadata' => (string)$applicationMetadata,
         ]);
 
         return parent::__construct(stream_for($data)->detach(), ['size' => strlen($data)]);

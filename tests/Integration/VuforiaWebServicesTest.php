@@ -66,18 +66,18 @@ final class VuforiaWebServicesTest extends TestCase
         $target = new Target(
             'test',
             3.14,
-            stream_for('image'),
+            stream_for(base64_encode('image')),
             true,
-            stream_for('application_metadata')
+            stream_for(base64_encode('application_metadata'))
         );
 
         $targetAsJson = <<<'JSON'
 {
   "name": "test",
   "width": 3.14,
-  "image": "aW1h",
+  "image": "aW1hZ2U=",
   "active_flag": true,
-  "application_metadata": "YXBwbGljYXRpb25fbWV0YWRh"
+  "application_metadata": "YXBwbGljYXRpb25fbWV0YWRhdGE="
 }
 JSON;
 
