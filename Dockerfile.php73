@@ -1,10 +1,10 @@
 FROM phpearth/php:7.3-cli
 
 RUN apk add --no-cache composer php7.3-xdebug git zip
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /usr/local/bin/wait
-RUN chmod +x /usr/local/bin/wait
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /usr/local/bin/docker-compose-wait
+RUN chmod +x /usr/local/bin/docker-compose-wait
 
-ADD docker-entrypoint.sh /
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 WORKDIR /opt/app
@@ -13,4 +13,3 @@ COPY . /opt/app
 RUN composer install
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
-

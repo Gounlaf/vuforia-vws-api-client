@@ -2,6 +2,6 @@
 
 set -e
 
-wait && composer run test-ci
+/usr/local/bin/docker-compose-wait && composer run test-ci
 
 exit $?
