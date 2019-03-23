@@ -8,10 +8,8 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient;
 
-use Carbon\Carbon;
 use Exception;
 use GuzzleHttp\Psr7\StreamWrapper;
-use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -46,16 +44,19 @@ final class SignatureFactory
      */
     public static function createSignatureForRequest(RequestInterface $request, string $secretKey)
     {
+        Assert::true($request->hasHeader('Date'), 'Date header required');
+        $dateHeader = $request->getHeaderLine('Date');
+        Assert::dateFormat($dateHeader, DATE_RFC1123);
+
         $httpVerb = strtoupper($request->getMethod());
 
         switch ($httpVerb) {
             case 'POST':
             case 'PUT':
             case 'PATCH':
+                Assert::true($request->hasHeader('Content-Type'), 'Content-Type header required');
                 $contentType = $request->getHeaderLine('Content-Type');
-                if ($contentType !== 'application/json') {
-                    throw new InvalidArgumentException('Expected Content-Type to be application/json');
-                }
+                Assert::oneOf($contentType, ['application/json'], 'Expected Content-Type to be one of: %2$s. Got: %s');
 
                 $body = $request->getBody();
                 $body->rewind();
@@ -73,17 +74,12 @@ final class SignatureFactory
                 break;
         }
 
-        if ($request->hasHeader('Date')) {
-            $date = Carbon::createFromFormat(DATE_RFC7231, $request->getHeaderLine('Date'));
-        } else {
-            $date = Carbon::now('UTC');
-        }
 
         $stringToSign =
             $httpVerb . PHP_EOL .
             $contentMd5 . PHP_EOL .
             $contentType . PHP_EOL .
-            $date->toRfc7231String() . PHP_EOL .
+            $dateHeader . PHP_EOL .
             $request->getUri()->getPath();
 
         return base64_encode(hash_hmac('sha1', $stringToSign, $secretKey, true));

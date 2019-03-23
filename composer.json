@@ -21,11 +21,13 @@
   },
   "require": {
     "php": ">=7.2",
+    "gounlaf/webmozart-assert-date": "^0.0.1",
     "guzzlehttp/psr7": "^1.5",
     "nesbot/carbon": "^2.16",
     "tebru/retrofit-php": "dev-master",
     "tebru/retrofit-php-converter-gson": "^0.2.0",
-    "tebru/retrofit-php-http-guzzle6": "^0.1.1"
+    "tebru/retrofit-php-http-guzzle6": "^0.1.1",
+    "webmozart/assert": "^1.4"
   },
   "require-dev": {
     "ext-json": "*",

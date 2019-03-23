@@ -11,9 +11,9 @@ namespace Gounlaf\VwsApiClient\Test\Unit;
 use Carbon\Carbon;
 use Gounlaf\VwsApiClient\SignatureFactory;
 use Gounlaf\VwsApiClient\Test\TestCase;
-use function GuzzleHttp\Psr7\stream_for;
 use InvalidArgumentException;
 use Zend\Diactoros\RequestFactory;
+use function GuzzleHttp\Psr7\stream_for;
 
 final class SignatureFactoryTest extends TestCase
 {
@@ -52,27 +52,24 @@ final class SignatureFactoryTest extends TestCase
     {
         $request = (new RequestFactory())->createRequest('POST', '/post')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String())
+            ->withHeader('Date', static::$date->toRfc1123String())
             ->withHeader('Content-Type', 'application/json');
 
         $this->assertSame(
-            'KIdRUkCU0aTtChBPYEu/dImsHTY=',
+            'cHSw7u438JHbj2ZytL4fdK8iEpw=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }
 
     public function testSignatureFactoryForPostWithoutDate()
     {
-        Carbon::setTestNow(static::$date);
+        $this->expectException(InvalidArgumentException::class);
 
         $request = (new RequestFactory())->createRequest('POST', '/post')
             ->withBody(stream_for(static::$body))
             ->withHeader('Content-Type', 'application/json');
 
-        $this->assertSame(
-            'KIdRUkCU0aTtChBPYEu/dImsHTY=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
-        );
+        SignatureFactory::createSignatureForRequest($request, static::$key);
     }
 
     public function testSignatureFactoryForPostJsonRequired()
@@ -81,7 +78,7 @@ final class SignatureFactoryTest extends TestCase
 
         $request = (new RequestFactory())->createRequest('POST', '/post')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String());
+            ->withHeader('Date', static::$date->toRfc1123String());
 
         SignatureFactory::createSignatureForRequest($request, static::$key);
     }
@@ -90,11 +87,11 @@ final class SignatureFactoryTest extends TestCase
     {
         $request = (new RequestFactory())->createRequest('PUT', '/put')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String())
+            ->withHeader('Date', static::$date->toRfc1123String())
             ->withHeader('Content-Type', 'application/json');
 
         $this->assertSame(
-            'QLgGCN2zMwZFn89gdjf/ZBjAesU=',
+            '4f/ucWNyopuodxTcfXBPw2boADA=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }
@@ -105,7 +102,7 @@ final class SignatureFactoryTest extends TestCase
 
         $request = (new RequestFactory())->createRequest('PUT', '/put')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String());
+            ->withHeader('Date', static::$date->toRfc1123String());
 
         SignatureFactory::createSignatureForRequest($request, static::$key);
     }
@@ -114,11 +111,11 @@ final class SignatureFactoryTest extends TestCase
     {
         $request = (new RequestFactory())->createRequest('PATCH', '/patch')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String())
+            ->withHeader('Date', static::$date->toRfc1123String())
             ->withHeader('Content-Type', 'application/json');
 
         $this->assertSame(
-            'Elaawdm7Edelne2Epdnd5rL15Gc=',
+            'J+yNhypBDCeXCOrVW8jPcB0JojU=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }
@@ -129,7 +126,7 @@ final class SignatureFactoryTest extends TestCase
 
         $request = (new RequestFactory())->createRequest('PATCH', '/patch')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String());
+            ->withHeader('Date', static::$date->toRfc1123String());
 
         SignatureFactory::createSignatureForRequest($request, static::$key);
     }
@@ -137,10 +134,10 @@ final class SignatureFactoryTest extends TestCase
     public function testSignatureFactoryForDelete()
     {
         $request = (new RequestFactory())->createRequest('DELETE', '/delete')
-            ->withHeader('Date', static::$date->toRfc7231String());
+            ->withHeader('Date', static::$date->toRfc1123String());
 
         $this->assertSame(
-            'Gme5EPmt9BhqciuHXIGHcVG0cps=',
+            'jvc+Q82/i2MMt54T4zGRS6Nqaco=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }
@@ -151,11 +148,11 @@ final class SignatureFactoryTest extends TestCase
 
         $request = (new RequestFactory())->createRequest('DELETE', '/delete')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String())
+            ->withHeader('Date', static::$date->toRfc1123String())
             ->withHeader('Content-Type', 'application/json');
 
         $this->assertSame(
-            'Gme5EPmt9BhqciuHXIGHcVG0cps=',
+            'jvc+Q82/i2MMt54T4zGRS6Nqaco=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }
@@ -163,10 +160,10 @@ final class SignatureFactoryTest extends TestCase
     public function testSignatureFactoryForGet()
     {
         $request = (new RequestFactory())->createRequest('GET', '/get')
-            ->withHeader('Date', static::$date->toRfc7231String());
+            ->withHeader('Date', static::$date->toRfc1123String());
 
         $this->assertSame(
-            'TbcjoVGZ8LCs9m3kpl9ISKcHhT8=',
+            'LAM4Z4Kt2aMFDP1rNFMSXnwWoB8=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }
@@ -177,11 +174,11 @@ final class SignatureFactoryTest extends TestCase
 
         $request = (new RequestFactory())->createRequest('GET', '/get')
             ->withBody(stream_for(static::$body))
-            ->withHeader('Date', static::$date->toRfc7231String())
+            ->withHeader('Date', static::$date->toRfc1123String())
             ->withHeader('Content-Type', 'application/json');
 
         $this->assertSame(
-            'TbcjoVGZ8LCs9m3kpl9ISKcHhT8=',
+            'LAM4Z4Kt2aMFDP1rNFMSXnwWoB8=',
             SignatureFactory::createSignatureForRequest($request, static::$key)
         );
     }

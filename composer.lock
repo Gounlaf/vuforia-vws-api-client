@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52b0872255ba21f19f3d3c83c40d14ea",
+    "content-hash": "d8455263cbd1c6b8de8f3fb83b63b854",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -127,6 +127,43 @@
                 "parser"
             ],
             "time": "2014-09-09T13:34:57+00:00"
+        },
+        {
+            "name": "gounlaf/webmozart-assert-date",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://gitlab.com/Gounlaf/webmozart-assert-date.git",
+                "reference": "8ac7b6efdb779332bd4f9a79d649bed5afb9d362"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://gitlab.com/api/v4/projects/Gounlaf%2Fwebmozart-assert-date/repository/archive.zip?sha=8ac7b6efdb779332bd4f9a79d649bed5afb9d362",
+                "reference": "8ac7b6efdb779332bd4f9a79d649bed5afb9d362",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0",
+                "webmozart/assert": "^1.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gounlaf\\Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Date validation (extension to webmozart/assert",
+            "keywords": [
+                "assert"
+            ],
+            "time": "2019-03-22T22:36:18+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
