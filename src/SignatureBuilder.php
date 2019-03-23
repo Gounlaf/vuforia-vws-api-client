@@ -8,8 +8,9 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient;
 
-use Exception;
+use Gounlaf\VwsApiClient\Contracts\SignatureBuilder as Contract;
 use GuzzleHttp\Psr7\StreamWrapper;
+use InvalidArgumentException;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -18,31 +19,16 @@ use Psr\Http\Message\RequestInterface;
  *
  * @see https://library.vuforia.com/content/vuforia-library/en/articles/Training/Using-the-VWS-API.html Making API calls
  */
-final class SignatureFactory
+final class SignatureBuilder implements Contract
 {
     const EMPTY_STR_MD5 = 'd41d8cd98f00b204e9800998ecf8427e';
 
     /**
-     * Signature = Base64(HMAC-SHA1(server_secret_key, StringToSign ) ) ;
-     * StringToSign = HTTP-Verb + "\n" + Content-MD5 + "\n" + Content-Type + "\n" + Date + "\n" + Request-Path;
-     * Where:
-     *   - HTTP-Verb is the HTTP method used for the action, for example, GET, POST, and so forth.
-     *   - Content-MD5 is the hexadecimal MD5 hash of the whole request body (from the first boundary to the last one,
-     *     including the boundary itself).
-     *     For request types without request body, include the MD5 hash of an empty string
-     *     which is “d41d8cd98f00b204e9800998ecf8427e”.
-     *   - Content-Type is the content-type of the request body (like multipart/form-data).
-     *     Use an empty string for request types without a request body.
-     *   - Date is the current date per RFC 2616, section 3.3.1, rfc1123-date format,
-     *     for example, Sun, 22 Apr 2012 08:49:37 GMT.
-     *   - NOTE: The date and time always refer to GMT
+     * @inheritDoc
      *
-     * @param RequestInterface $request
-     * @param string $secretKey
-     * @return string
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
-    public static function createSignatureForRequest(RequestInterface $request, string $secretKey)
+    public function createSignatureForRequest(RequestInterface $request, string $secretKey): string
     {
         Assert::true($request->hasHeader('Date'), 'Date header required');
         $dateHeader = $request->getHeaderLine('Date');
@@ -73,7 +59,6 @@ final class SignatureFactory
                 $contentType = '';
                 break;
         }
-
 
         $stringToSign =
             $httpVerb . PHP_EOL .

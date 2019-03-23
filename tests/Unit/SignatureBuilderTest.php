@@ -9,13 +9,13 @@ declare(strict_types=1);
 namespace Gounlaf\VwsApiClient\Test\Unit;
 
 use Carbon\Carbon;
-use Gounlaf\VwsApiClient\SignatureFactory;
+use Gounlaf\VwsApiClient\SignatureBuilder;
 use Gounlaf\VwsApiClient\Test\TestCase;
 use InvalidArgumentException;
 use Zend\Diactoros\RequestFactory;
 use function GuzzleHttp\Psr7\stream_for;
 
-final class SignatureFactoryTest extends TestCase
+final class SignatureBuilderTest extends TestCase
 {
     /**
      * @var Carbon
@@ -57,7 +57,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'KIdRUkCU0aTtChBPYEu/dImsHTY=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 
@@ -69,7 +69,7 @@ final class SignatureFactoryTest extends TestCase
             ->withBody(stream_for(static::$body))
             ->withHeader('Content-Type', 'application/json');
 
-        SignatureFactory::createSignatureForRequest($request, static::$key);
+        (new SignatureBuilder())->createSignatureForRequest($request, static::$key);
     }
 
     public function testSignatureFactoryForPostJsonRequired()
@@ -80,7 +80,7 @@ final class SignatureFactoryTest extends TestCase
             ->withBody(stream_for(static::$body))
             ->withHeader('Date', static::$date->toRfc7231String());
 
-        SignatureFactory::createSignatureForRequest($request, static::$key);
+        (new SignatureBuilder())->createSignatureForRequest($request, static::$key);
     }
 
     public function testSignatureFactoryForPut()
@@ -92,7 +92,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'QLgGCN2zMwZFn89gdjf/ZBjAesU=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 
@@ -104,7 +104,7 @@ final class SignatureFactoryTest extends TestCase
             ->withBody(stream_for(static::$body))
             ->withHeader('Date', static::$date->toRfc7231String());
 
-        SignatureFactory::createSignatureForRequest($request, static::$key);
+        (new SignatureBuilder())->createSignatureForRequest($request, static::$key);
     }
 
     public function testSignatureFactoryForPatch()
@@ -116,7 +116,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'Elaawdm7Edelne2Epdnd5rL15Gc=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 
@@ -128,7 +128,7 @@ final class SignatureFactoryTest extends TestCase
             ->withBody(stream_for(static::$body))
             ->withHeader('Date', static::$date->toRfc7231String());
 
-        SignatureFactory::createSignatureForRequest($request, static::$key);
+        (new SignatureBuilder())->createSignatureForRequest($request, static::$key);
     }
 
     public function testSignatureFactoryForDelete()
@@ -138,7 +138,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'Gme5EPmt9BhqciuHXIGHcVG0cps=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 
@@ -153,7 +153,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'Gme5EPmt9BhqciuHXIGHcVG0cps=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 
@@ -164,7 +164,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'TbcjoVGZ8LCs9m3kpl9ISKcHhT8=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 
@@ -179,7 +179,7 @@ final class SignatureFactoryTest extends TestCase
 
         $this->assertSame(
             'TbcjoVGZ8LCs9m3kpl9ISKcHhT8=',
-            SignatureFactory::createSignatureForRequest($request, static::$key)
+            (new SignatureBuilder())->createSignatureForRequest($request, static::$key)
         );
     }
 }
