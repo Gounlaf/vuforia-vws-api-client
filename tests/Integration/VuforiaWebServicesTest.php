@@ -13,8 +13,6 @@ use Gounlaf\VwsApiClient\Target;
 use Gounlaf\VwsApiClient\Test\TestCase;
 use Gounlaf\VwsApiClient\VuforiaWebServices;
 use GuzzleHttp\Client;
-use function GuzzleHttp\Psr7\stream_for;
-use function GuzzleHttp\Psr7\uri_for;
 use Mcustiel\Phiremock\Client\Phiremock;
 use Mcustiel\Phiremock\Client\Utils\A;
 use Mcustiel\Phiremock\Client\Utils\Is;
@@ -23,6 +21,8 @@ use Tebru\Gson\Gson;
 use Tebru\Retrofit\Retrofit;
 use Tebru\RetrofitConverter\Gson\GsonConverterFactory;
 use Tebru\RetrofitHttp\Guzzle6\Guzzle6HttpClient;
+use function GuzzleHttp\Psr7\stream_for;
+use function GuzzleHttp\Psr7\uri_for;
 
 final class VuforiaWebServicesTest extends TestCase
 {
@@ -47,7 +47,7 @@ final class VuforiaWebServicesTest extends TestCase
             ->withPort(getenv('PHIREMOCK_PORT'));
 
         $retrofit = Retrofit::builder()
-            ->setBaseUrl((string) $baseUrl)
+            ->setBaseUrl((string)$baseUrl)
             ->setHttpClient(new Guzzle6HttpClient(new Client()))
             ->addConverterFactory(new GsonConverterFactory(Gson::builder()->build()))
             ->build();
@@ -105,5 +105,7 @@ JSON;
         $this->assertSame(200, $response->code());
         $body = $response->body();
         $this->assertInstanceOf(SimpleResponse::class, $body);
+        $this->assertSame("Success", $body->getResultCode());
+        $this->assertSame("550e8400e29b41d4a716446655482752", $body->getTransactionId());
     }
 }
