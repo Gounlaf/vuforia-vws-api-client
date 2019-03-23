@@ -46,7 +46,7 @@ final class SignatureFactory
     {
         Assert::true($request->hasHeader('Date'), 'Date header required');
         $dateHeader = $request->getHeaderLine('Date');
-        Assert::dateFormat($dateHeader, DATE_RFC1123);
+        Assert::dateFormat($dateHeader, DATE_RFC7231);
 
         $httpVerb = strtoupper($request->getMethod());
 
