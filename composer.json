@@ -2,7 +2,7 @@
   "name": "gounlaf/vuforia-vws-api-client",
   "description": "Unofficial client for Vuforia Web Services API",
   "type": "library",
-  "license": "LGPL-3.0-or-later",
+  "license": "MIT",
   "keywords": [
     "vuforia",
     "vuforia web services",
