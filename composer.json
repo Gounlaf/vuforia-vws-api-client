@@ -21,6 +21,7 @@
   },
   "require": {
     "php": ">=7.2",
+    "ext-json": "*",
     "gounlaf/webmozart-assert-date": "^0.0.1",
     "guzzlehttp/psr7": "^1.5",
     "nesbot/carbon": "^2.16",
@@ -34,8 +35,10 @@
     "ext-xdebug": "*",
     "consolidation/robo": "~1",
     "mcustiel/phiremock": "*",
+    "mockery/mockery": "^1.2",
     "phpunit/phpunit": "^8.0",
-    "symfony/var-dumper": "^4.2"
+    "symfony/var-dumper": "^4.2",
+    "zendframework/zend-diactoros": "^2.1"
   },
   "config": {
     "sort-packages": true,

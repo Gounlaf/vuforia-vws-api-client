@@ -10,9 +10,12 @@ namespace Gounlaf\VwsApiClient\Test;
 
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     protected function tearDown(): void
     {
         parent::tearDown();

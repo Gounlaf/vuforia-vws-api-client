@@ -16,6 +16,8 @@ use Tebru\Retrofit\Call;
 
 interface VuforiaWebServices
 {
+    const DEFAULT_BASE_URL = 'https://vws.vuforia.com';
+
     /**
      * @POST("/targets")
      * @Body("target")
