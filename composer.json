@@ -31,9 +31,10 @@
     "webmozart/assert": "^1.4"
   },
   "require-dev": {
-    "ext-json": "*",
+    "ext-gd": "*",
     "ext-xdebug": "*",
     "consolidation/robo": "~1",
+    "endroid/qr-code": "^3.5",
     "mcustiel/phiremock": "*",
     "mockery/mockery": "^1.2",
     "phpunit/phpunit": "^8.0",

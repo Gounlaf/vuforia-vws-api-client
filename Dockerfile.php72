@@ -1,6 +1,6 @@
 FROM phpearth/php:7.2-cli
 
-RUN apk add --no-cache composer php7.2-xdebug git zip
+RUN apk add --no-cache git zip composer php7.2-xdebug php7.2-gd
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /usr/local/bin/docker-compose-wait
 RUN chmod +x /usr/local/bin/docker-compose-wait
 

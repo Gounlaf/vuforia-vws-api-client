@@ -11,7 +11,7 @@
         bootstrap="tests/bootstrap.php">
     <testsuites>
         <testsuite name="unit-integration">
-            <directory >tests/</directory>
+            <directory>tests/</directory>
             <exclude>tests/Functional</exclude>
         </testsuite>
 
@@ -30,12 +30,15 @@
     </filter>
 
     <logging>
-        <log type="coverage-text" target="php://stdout" />
+        <log type="coverage-text" target="php://stdout"/>
     </logging>
 
     <php>
         <env name="PHIREMOCK_PORT" value="8080"/>
         <env name="PHIREMOCK_INTERFACE" value="0.0.0.0"/>
         <env name="PHIREMOCK_HOST" value="localhost"/>
+
+        <env name="VUFORIA_ACCESS_KEY" value="test"/>
+        <env name="VUFORIA_SECRET_KEY" value="test"/>
     </php>
 </phpunit>

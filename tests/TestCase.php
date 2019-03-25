@@ -19,6 +19,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function tearDown(): void
     {
         parent::tearDown();
+
         Carbon::setTestNow(null);
         CarbonImmutable::setTestNow(null);
     }
