@@ -8,7 +8,8 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient\Test\Integration;
 
-use Gounlaf\VwsApiClient\Contracts\Response\SimpleResponse;
+use Gounlaf\VwsApiClient\Contracts\Response\ResultCode;
+use Gounlaf\VwsApiClient\Impl\Response\Body\AddTargetResponseBody;
 use Gounlaf\VwsApiClient\Target;
 use Gounlaf\VwsApiClient\Test\TestCase;
 use Gounlaf\VwsApiClient\VuforiaWebServices;
@@ -84,7 +85,8 @@ JSON;
         $serverResponseContent = <<<'JSON'
 {
   "result_code":"Success",
-  "transaction_id":"550e8400e29b41d4a716446655482752"
+  "transaction_id":"550e8400e29b41d4a716446655482752",
+  "target_id": "550e8400e29b41d34716446655834450"
 }
 JSON;
 
@@ -104,8 +106,9 @@ JSON;
         $response = $this->client->addTarget($target)->execute();
         $this->assertSame(200, $response->code());
         $body = $response->body();
-        $this->assertInstanceOf(SimpleResponse::class, $body);
-        $this->assertSame("Success", $body->getResultCode());
-        $this->assertSame("550e8400e29b41d4a716446655482752", $body->getTransactionId());
+        $this->assertInstanceOf(AddTargetResponseBody::class, $body);
+        $this->assertEquals(ResultCode::SUCCESS(), $body->getResultCode());
+        $this->assertSame('550e8400e29b41d4a716446655482752', $body->getTransactionId());
+        $this->assertSame('550e8400e29b41d34716446655834450', $body->getTargetId());
     }
 }

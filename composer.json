@@ -24,6 +24,7 @@
     "ext-json": "*",
     "gounlaf/webmozart-assert-date": "^0.0.1",
     "guzzlehttp/psr7": "^1.5",
+    "myclabs/php-enum": "^1.6",
     "nesbot/carbon": "^2.16",
     "tebru/retrofit-php": "dev-master",
     "tebru/retrofit-php-converter-gson": "^0.2.0",
@@ -35,10 +36,12 @@
     "ext-xdebug": "*",
     "consolidation/robo": "~1",
     "endroid/qr-code": "^3.5",
+    "illuminate/support": "^5.8",
     "mcustiel/phiremock": "*",
     "mockery/mockery": "^1.2",
     "phpunit/phpunit": "^8.0",
     "symfony/var-dumper": "^4.2",
+    "vlucas/phpdotenv": "^3.3",
     "zendframework/zend-diactoros": "^2.1"
   },
   "config": {

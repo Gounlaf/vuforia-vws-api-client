@@ -8,11 +8,10 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient\Contracts\Response\Body;
 
-use Tebru\Retrofit\Response;
-
-/**
- * @method AddTargetResponseBody body()
- */
-interface AddTargetResponse extends Response
+interface AddTargetResponseBody extends SimpleResponseBody
 {
+    /**
+     * @return string
+     */
+    public function getTargetId(): string;
 }

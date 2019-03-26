@@ -40,5 +40,8 @@
 
         <env name="VUFORIA_ACCESS_KEY" value="test"/>
         <env name="VUFORIA_SECRET_KEY" value="test"/>
+
+        <env name="VUFORIA_TEST_TRY_ADD_TARGET" value="false"/>
+        <env name="VUFORIA_TEST_TARGET_GET_ID" value="test"/>
     </php>
 </phpunit>

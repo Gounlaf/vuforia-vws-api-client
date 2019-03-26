@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient\Contracts\Call;
 
-use Gounlaf\VwsApiClient\Contracts\Response\AddTargetResponse;
+use Gounlaf\VwsApiClient\Contracts\Response\Body\AddTargetResponse;
 use Tebru\Retrofit\Call;
 
 /**

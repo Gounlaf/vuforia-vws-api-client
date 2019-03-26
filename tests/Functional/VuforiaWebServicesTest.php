@@ -10,7 +10,7 @@ namespace Gounlaf\VwsApiClient\Test\Functional;
 
 use Carbon\CarbonImmutable;
 use Endroid\QrCode\QrCode;
-use Gounlaf\VwsApiClient\Contracts\Response\SimpleResponse;
+use Gounlaf\VwsApiClient\Impl\Response\Body\AddTargetResponseBody;
 use Gounlaf\VwsApiClient\Middlewares\VWSSignature;
 use Gounlaf\VwsApiClient\SignatureBuilder;
 use Gounlaf\VwsApiClient\Target;
@@ -37,8 +37,8 @@ final class VuforiaWebServicesTest extends TestCase
     {
         parent::setUp();
 
-        $accessKey = getenv('VUFORIA_ACCESS_KEY');
-        $secretKey = getenv('VUFORIA_SECRET_KEY');
+        $accessKey = env('VUFORIA_ACCESS_KEY', 'test');
+        $secretKey = env('VUFORIA_SECRET_KEY', 'test');
 
         if (false === $accessKey || false === $secretKey || $accessKey === 'test' || $secretKey === 'test') {
             $this->markTestSkipped('VUFORIA_ACCESS_KEY and/or VUFORIA_SECRET_KEY are not defined with real values');
@@ -63,6 +63,13 @@ final class VuforiaWebServicesTest extends TestCase
 
     public function testAddTarget()
     {
+        $doTry = env('VUFORIA_TEST_TRY_ADD_TARGET', false);
+
+        if (true !== $doTry) {
+            $this->markTestSkipped('VUFORIA_TEST_TRY_ADD_TARGET is not defined with real values');
+            return;
+        }
+
         $content = json_encode([
             'url' => 'https://gitlab.com/Gounlaf/vuforia-vws-api-client',
             'method' => __METHOD__,
@@ -80,7 +87,7 @@ final class VuforiaWebServicesTest extends TestCase
 
         $this->assertSame(201, $response->code());
         $body = $response->body();
-        $this->assertInstanceOf(SimpleResponse::class, $body);
+        $this->assertInstanceOf(AddTargetResponseBody::class, $body);
         $this->assertSame('TargetCreated', $body->getResultCode());
     }
 
