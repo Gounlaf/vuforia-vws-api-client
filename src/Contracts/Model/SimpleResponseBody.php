@@ -6,18 +6,22 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VwsApiClient\Contracts\Response\Body;
-
-use Gounlaf\VwsApiClient\Contracts\Response\ResultCode;
+namespace Gounlaf\VwsApiClient\Contracts\Model;
 
 interface SimpleResponseBody
 {
     /**
-     * @return ResultCode
+     * One of the VWS API Result Codes
+     *
+     * @see ResultCode
+     *
+     * @return string
      */
-    public function getResultCode(): ResultCode;
+    public function getResultCode(): string;
 
     /**
+     * ID of the transaction
+     *
      * @return string
      */
     public function getTransactionId(): string;

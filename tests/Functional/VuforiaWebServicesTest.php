@@ -10,7 +10,9 @@ namespace Gounlaf\VwsApiClient\Test\Functional;
 
 use Carbon\CarbonImmutable;
 use Endroid\QrCode\QrCode;
-use Gounlaf\VwsApiClient\Impl\Response\Body\AddTargetResponseBody;
+use Gounlaf\VwsApiClient\Contracts\Model\AddTargetResponseBody;
+use Gounlaf\VwsApiClient\Contracts\Model\GetTargetResponseBody;
+use Gounlaf\VwsApiClient\Contracts\Model\ResultCode;
 use Gounlaf\VwsApiClient\Middlewares\VWSSignature;
 use Gounlaf\VwsApiClient\SignatureBuilder;
 use Gounlaf\VwsApiClient\Target;
@@ -88,7 +90,25 @@ final class VuforiaWebServicesTest extends TestCase
         $this->assertSame(201, $response->code());
         $body = $response->body();
         $this->assertInstanceOf(AddTargetResponseBody::class, $body);
-        $this->assertSame('TargetCreated', $body->getResultCode());
+        $this->assertEquals(ResultCode::TARGET_CREATED, $body->getResultCode());
+    }
+
+    public function testGetTarget()
+    {
+        $targetId = env('VUFORIA_TEST_TARGET_GET_ID', 'test');
+
+        if (false === $targetId || $targetId === 'test') {
+            $this->markTestSkipped('VUFORIA_TEST_TARGET_GET_ID is not defined with real values');
+            return;
+        }
+
+        $response = $this->client->getTarget($targetId)->execute();
+
+        $this->assertSame(200, $response->code());
+        $body = $response->body();
+        $response->raw()->getBody()->rewind();
+        $this->assertInstanceOf(GetTargetResponseBody::class, $body);
+        $this->assertEquals(ResultCode::SUCCESS, $body->getResultCode());
     }
 
     private function generateImageAsString(string $content): string

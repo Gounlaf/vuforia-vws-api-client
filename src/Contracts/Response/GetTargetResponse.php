@@ -8,12 +8,12 @@ declare(strict_types=1);
 
 namespace Gounlaf\VwsApiClient\Contracts\Response\Body;
 
-use Gounlaf\VwsApiClient\Contracts\Model\AddTargetResponseBody;
+use Gounlaf\VwsApiClient\Contracts\Model\GetTargetResponseBody;
 use Tebru\Retrofit\Response;
 
 /**
- * @method AddTargetResponseBody body()
+ * @method GetTargetResponseBody body()
  */
-interface AddTargetResponse extends Response
+interface GetTargetResponse extends Response
 {
 }

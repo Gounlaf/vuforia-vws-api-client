@@ -24,7 +24,6 @@
     "ext-json": "*",
     "gounlaf/webmozart-assert-date": "^0.0.1",
     "guzzlehttp/psr7": "^1.5",
-    "myclabs/php-enum": "^1.6",
     "nesbot/carbon": "^2.16",
     "tebru/retrofit-php": "dev-master",
     "tebru/retrofit-php-converter-gson": "^0.2.0",

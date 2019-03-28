@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VwsApiClient\Impl\Response\Body;
+namespace Gounlaf\VwsApiClient\Impl\Model;
 
-use Gounlaf\VwsApiClient\Contracts\Response\Body\AddTargetResponseBody as Contract;
+use Gounlaf\VwsApiClient\Contracts\Model\AddTargetResponseBody as Contract;
 
 class AddTargetResponseBody extends SimpleResponseBody implements Contract
 {
@@ -18,7 +18,7 @@ class AddTargetResponseBody extends SimpleResponseBody implements Contract
     protected $targetId;
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getTargetId(): string
     {

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VwsApiClient\Contracts\Response\Body;
+namespace Gounlaf\VwsApiClient\Contracts\Model;
 
 interface AddTargetResponseBody extends SimpleResponseBody
 {

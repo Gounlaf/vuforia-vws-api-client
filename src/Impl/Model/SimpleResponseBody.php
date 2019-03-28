@@ -6,18 +6,17 @@
 
 declare(strict_types=1);
 
-namespace Gounlaf\VwsApiClient\Impl\Response\Body;
+namespace Gounlaf\VwsApiClient\Impl\Model;
 
-use Gounlaf\VwsApiClient\Contracts\Response\Body\SimpleResponseBody as Contract;
-use Gounlaf\VwsApiClient\Contracts\Response\ResultCode;
-use Tebru\Gson\Annotation as Gson;
+use Gounlaf\VwsApiClient\Contracts\Model\ResultCode;
+use Gounlaf\VwsApiClient\Contracts\Model\SimpleResponseBody as Contract;
 
 abstract class SimpleResponseBody implements Contract
 {
     /**
-     * @Gson\JsonAdapter("Gounlaf\VwsApiClient\Internal\GsonTypeAdapter\ResultCodeTypeAdapterFactory")
+     * @see ResultCode
      *
-     * @var ResultCode
+     * @var string
      */
     protected $resultCode;
 
@@ -27,15 +26,15 @@ abstract class SimpleResponseBody implements Contract
     protected $transactionId;
 
     /**
-     * @return ResultCode
+     * @inheritDoc
      */
-    public function getResultCode(): ResultCode
+    public function getResultCode(): string
     {
         return $this->resultCode;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getTransactionId(): string
     {

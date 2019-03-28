@@ -25,7 +25,7 @@ interface VuforiaWebServices
     /**
      * @POST("/targets")
      * @Body("target")
-     * @ResponseBody("Gounlaf\VwsApiClient\Impl\Response\Body\AddTargetResponseBody")
+     * @ResponseBody("Gounlaf\VwsApiClient\Impl\Model\AddTargetResponseBody")
      *
      * @param Target $target
      *
@@ -36,7 +36,7 @@ interface VuforiaWebServices
     /**
      * @GET("/targets/{target_id}")
      * @Path("target_id", var="targetId")
-     * @ResponseBody("Gounlaf\VwsApiClient\Impl\Response\Body\GetTargetResponseBody")
+     * @ResponseBody("Gounlaf\VwsApiClient\Impl\Model\GetTargetResponseBody")
      *
      * @param string $targetId
      *
